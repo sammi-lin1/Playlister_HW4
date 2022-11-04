@@ -3,6 +3,9 @@ import GlobalStoreContext from '../store';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import Grid from '@mui/material/Grid';
+import { Button } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 const style = {
     position: 'absolute',
@@ -31,26 +34,27 @@ export default function MUIDeleteModal() {
 
     return (
         <Modal
-            open={store.listMarkedForDeletion !== null}
-        >
+            open={store.listMarkedForDeletion !== null}>
             <Box sx={style}>
-                <div className="modal-dialog">
+                
                 <header className="dialog-header">
                     Delete the {name} Top 5 List?
                 </header>
                 <div id="confirm-cancel-container">
-                    <button
+                    <Button
+                        variant='contained'
                         id="dialog-yes-button"
                         className="modal-button"
                         onClick={handleDeleteList}
-                    >Confirm</button>
-                    <button
+                    >Confirm</Button>
+                    <Button
+                        variant='outlined'
                         id="dialog-no-button"
                         className="modal-button"
                         onClick={handleCloseModal}
-                    >Cancel</button>
+                    >Cancel</Button>
+                
                 </div>
-            </div>
             </Box>
         </Modal>
     );

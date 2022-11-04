@@ -22,10 +22,7 @@ export default function MUIErrorModal() {
 
     function handleCloseModal() {
         auth.closeErrorModal();
-        console.log(auth.error);
     }
-    console.log("kbjasdkjsdhasjk");
-    console.log(auth.error);
 
     return (
         <Modal className="testmodal"

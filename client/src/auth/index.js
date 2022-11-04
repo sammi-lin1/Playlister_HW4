@@ -1,4 +1,5 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
+import GlobalStoreContext from "../store";
 import { useHistory } from 'react-router-dom'
 import api from './auth-request-api'
 
@@ -22,6 +23,8 @@ function AuthContextProvider(props) {
         errMsg: '',
         error: false
     });
+
+    const { store } = useContext(GlobalStoreContext);
     const history = useHistory();
 
     useEffect(() => {
@@ -146,6 +149,7 @@ function AuthContextProvider(props) {
     }
 
     auth.logoutUser = async function() {
+
         const response = await api.logoutUser();
         if (response.status === 200) {
             authReducer( {

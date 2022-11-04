@@ -17,11 +17,17 @@ function WorkspaceScreen() {
     store.history = useHistory();
     
     let modalJSX = "";
-    if (store.isEditSongModalOpen()) {
-        modalJSX = <MUIEditSongModal />;
+    if(store.currentList) {
+        if (store.isEditSongModalOpen()) {
+            modalJSX = <MUIEditSongModal />;
+        }
+        else if (store.isRemoveSongModalOpen()) {
+            modalJSX = <MUIRemoveSongModal />;
+        }
     }
-    else if (store.isRemoveSongModalOpen()) {
-        modalJSX = <MUIRemoveSongModal />;
+    else {
+        store.history.push("/");
+        return null;
     }
     return (
         <Box>
@@ -39,6 +45,7 @@ function WorkspaceScreen() {
                     />
                 ))  
             }
+            
          </List>            
          { modalJSX }
          </Box>

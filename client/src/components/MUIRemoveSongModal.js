@@ -3,6 +3,9 @@ import GlobalStoreContext from '../store';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import Grid from '@mui/material/Grid';
+import { Button } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 const style = {
     position: 'absolute',
@@ -10,6 +13,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
+    height: 100,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -38,37 +42,36 @@ export default function MUIRemoveSongModal() {
 
     return (
         <Modal
-            open={store.listMarkedForDeletion !== null}
-        >
+            open={store.currentSong}>
             <Box sx={style}>
-            <div
-        id="remove-song-modal"
-        className={modalClass}
-        data-animation="slideInOutLeft">
-        <div className="modal-root" id='verify-remove-song-root'>
-            <div className="modal-north">
-                Remove {songTitle}?
-            </div>
-            <div className="modal-center">
-                <div className="modal-center-content">
-                    Are you sure you wish to permanently remove {songTitle} from the playlist?
-                </div>
-            </div>
-            <div className="modal-south">
-                <input type="button" 
-                    id="remove-song-confirm-button" 
-                    className="modal-button" 
-                    onClick={handleConfirmRemoveSong} 
-                    value='Confirm' />
-                <input 
-                    type="button" 
-                    id="remove-song-cancel-button" 
-                    className="modal-button" 
-                    onClick={handleCancelRemoveSong} 
-                    value='Cancel' />
-            </div>
-        </div>
-    </div>
+                <Grid
+                    id="remove-song-modal"
+                    className={modalClass}
+                    data-animation="slideInOutLeft">
+                    <Grid className="modal-root" id='verify-remove-song-root'>
+                        <Typography variant="h6" component="h2" className="modal-north">
+                            Remove {songTitle}?
+                        </Typography>
+                            <Grid className="modal-center">
+                                <Grid className="modal-center-content">
+                                    Are you sure you wish to permanently remove {songTitle} from the playlist?
+                                </Grid>
+                            </Grid>
+                            <Grid className="modal-south">
+                                <Button type="button"
+                                    variant='contained'
+                                    id="remove-song-confirm-button" 
+                                    className="modal-button" 
+                                    onClick={handleConfirmRemoveSong}> Confirm </Button>
+                                <Button 
+                                    variant='outlined'
+                                    type="button" 
+                                    id="remove-song-cancel-button" 
+                                    className="modal-button" 
+                                    onClick={handleCancelRemoveSong}> Cancel </Button>
+                            </Grid>
+                    </Grid>
+                </Grid>
             </Box>
         </Modal>
     );
