@@ -132,7 +132,7 @@ function GlobalStoreContextProvider(props) {
                 return setStore({
                     currentModal : CurrentModal.DELETE_LIST,
                     idNamePairs: store.idNamePairs,
-                    currentList: null,
+                    currentList: null, //maybe change this to payload.playlist?
                     currentSongIndex: -1,
                     currentSong: null,
                     newListCounter: store.newListCounter,
@@ -325,7 +325,7 @@ function GlobalStoreContextProvider(props) {
                 history.push("/");
             }
         }
-        processDelete(id);
+        processDelete(id);    
     }
     store.deleteMarkedList = function() {
         store.deleteList(store.listIdMarkedForDeletion);
@@ -350,7 +350,7 @@ function GlobalStoreContextProvider(props) {
         storeReducer({
             type: GlobalStoreActionType.HIDE_MODALS,
             payload: {}
-        });    
+        });
     }
     store.isDeleteListModalOpen = () => {
         return store.currentModal === CurrentModal.DELETE_LIST;
