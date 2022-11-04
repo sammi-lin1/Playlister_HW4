@@ -6,13 +6,14 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import { Button } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 200,
     height: 300,
     bgcolor: 'background.paper',
     border: '2px solid #000',
@@ -63,9 +64,9 @@ export default function MUIEditSongModal() {
                 <Box
                     id='edit-song-root'
                     className="modal-root">
-                    <Box
+                    <Typography variant="h6" component="h2"
                         id="edit-song-modal-header"
-                        className="modal-north">Edit Song</Box>
+                        className="modal-north">Edit Song</Typography>
                     <Box
                         id="edit-song-modal-content"
                         className="modal-center">
