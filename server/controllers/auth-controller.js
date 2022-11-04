@@ -101,7 +101,7 @@ registerUser = async (req, res) => {
         if (!firstName || !lastName || !email || !password || !passwordVerify) {
             return res
                 .status(400)
-                .json({ errorMessage: "Please enter all required fields." });
+                .json({ errorMessage: "Please enter all required fields."});
         }
         console.log("all fields provided");
         if (password.length < 8) {

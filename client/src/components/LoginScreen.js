@@ -15,6 +15,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import MUIErrorModal from './MUIErrorModal';
 
 export default function LoginScreen() {
     const { auth } = useContext(AuthContext);
@@ -108,6 +109,7 @@ export default function LoginScreen() {
                             </Grid>
                         </Grid>
                         <Copyright sx={{ mt: 5 }} />
+                        <MUIErrorModal/>
                     </Box>
                 </Box>
             </Grid>
