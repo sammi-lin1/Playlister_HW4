@@ -22,15 +22,18 @@ export default function MUIErrorModal() {
 
     function handleCloseModal() {
         auth.closeErrorModal();
+        console.log(auth.error);
     }
+    console.log("kbjasdkjsdhasjk");
+    console.log(auth.error);
 
     return (
         <Modal className="testmodal"
-            open={auth.err}
+            open={auth.error}
         >
             <Box sx={style}
             textAlign='center'>
-            {<Alert severity="error"> {auth.errMsg}</Alert>  }
+            {<Alert severity="warning"> {auth.errMsg}</Alert>  }
                     <Button variant="contained"
                     onClick={handleCloseModal}> Close </Button>
                 </Box>

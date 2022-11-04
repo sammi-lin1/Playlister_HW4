@@ -10,7 +10,8 @@ export const AuthActionType = {
     GET_LOGGED_IN: "GET_LOGGED_IN",
     LOGIN_USER: "LOGIN_USER",
     LOGOUT_USER: "LOGOUT_USER",
-    REGISTER_USER: "REGISTER_USER"
+    REGISTER_USER: "REGISTER_USER",
+    ERROR: "ERROR"
 }
 
 function AuthContextProvider(props) {
@@ -19,7 +20,7 @@ function AuthContextProvider(props) {
         user: null,
         loggedIn: false,
         errMsg: '',
-        err: false
+        error: false
     });
     const history = useHistory();
 
@@ -33,31 +34,39 @@ function AuthContextProvider(props) {
             case AuthActionType.GET_LOGGED_IN: {
                 return setAuth({
                     user: payload.user,
-                    loggedIn: payload.loggedIn
+                    loggedIn: payload.loggedIn,
+                    errMsg: '',
+                    error: false
                 });
             }
             case AuthActionType.LOGIN_USER: {
                 return setAuth({
                     user: payload.user,
-                    loggedIn: true
+                    loggedIn: true,
+                    errMsg: '',
+                    error: false
                 })
             }
             case AuthActionType.LOGOUT_USER: {
                 return setAuth({
                     user: null,
-                    loggedIn: false
+                    loggedIn: false,
+                    errMsg: '',
+                    error: false
                 })
             }
             case AuthActionType.REGISTER_USER: {
                 return setAuth({
                     user: payload.user,
                     loggedIn: true,
+                    errMsg: '',
+                    error: false
                 })
             }
             case AuthActionType.ERROR: {
                 return setAuth({
                     errMsg: payload.errMsg,
-                    err: payload.err
+                    error: payload.error
                 })
             }
             default:
@@ -96,7 +105,7 @@ function AuthContextProvider(props) {
                 type: AuthActionType.ERROR,
                 payload: {
                     errMsg: err.response.data["errorMessage"],
-                    err: true
+                    error: true
                 }
             })
         }
@@ -106,7 +115,8 @@ function AuthContextProvider(props) {
         authReducer({
             type: AuthActionType.ERROR,
             payload: {
-                err: false
+                error: false,
+                errMsg: ''
             }
         })
     }
@@ -129,7 +139,7 @@ function AuthContextProvider(props) {
                 type: AuthActionType.ERROR,
                 payload: {
                     errMsg: err.response.data["errorMessage"],
-                    err: true
+                    error: true
                 }
             })
         }
