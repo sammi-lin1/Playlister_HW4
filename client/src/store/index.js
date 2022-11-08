@@ -447,7 +447,7 @@ function GlobalStoreContextProvider(props) {
     store.addNewSong = () => {
         let playlistSize = store.getPlaylistSize();
         store.addCreateSongTransaction(
-            playlistSize, "Untitled", "?", "dQw4w9WgXcQ");
+            playlistSize, "Untitled", "Unknown", "dQw4w9WgXcQ");
     }
     // THIS FUNCDTION ADDS A CreateSong_Transaction TO THE TRANSACTION STACK
     store.addCreateSongTransaction = (index, title, artist, youTubeId) => {
@@ -500,16 +500,16 @@ function GlobalStoreContextProvider(props) {
         tps.doTransaction();
     }
     store.canAddNewSong = function() {
-        return (store.currentList !== null);
+        return (store.currentList !== null && store.currentModal === CurrentModal.NONE);
     }
     store.canUndo = function() {
-        return ((store.currentList !== null) && tps.hasTransactionToUndo());
+        return ((store.currentList !== null) && tps.hasTransactionToUndo() && store.currentModal === CurrentModal.NONE);
     }
     store.canRedo = function() {
-        return ((store.currentList !== null) && tps.hasTransactionToRedo());
+        return ((store.currentList !== null) && tps.hasTransactionToRedo() && store.currentModal === CurrentModal.NONE);
     }
     store.canClose = function() {
-        return (store.currentList !== null);
+        return (store.currentList !== null && store.currentModal === CurrentModal.NONE);
     }
 
     // THIS FUNCTION ENABLES THE PROCESS OF EDITING A LIST NAME

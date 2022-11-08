@@ -12,7 +12,8 @@ export const AuthActionType = {
     LOGIN_USER: "LOGIN_USER",
     LOGOUT_USER: "LOGOUT_USER",
     REGISTER_USER: "REGISTER_USER",
-    ERROR: "ERROR"
+    ERROR: "ERROR",
+    SET_LOGGED_IN: "SET_LOGGED_IN"
 }
 
 function AuthContextProvider(props) {
@@ -40,6 +41,14 @@ function AuthContextProvider(props) {
                     loggedIn: payload.loggedIn,
                     errMsg: '',
                     error: false
+                });
+            }
+            case AuthActionType.SET_LOGGED_IN: {
+                return setAuth({
+                    user: payload.user,
+                    loggedIn: payload.loggedIn,
+                    // errMsg: '',
+                    // error: false
                 });
             }
             case AuthActionType.LOGIN_USER: {
